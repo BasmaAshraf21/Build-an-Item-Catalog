@@ -1,0 +1,59 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class = 'flash'>
+              {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                {% for n in restaurant %}
+                <li class="sidebar-brand">
+                    <a href= "{{url_for ('restaurantMenu', restaurant_id= n.id) }}">
+                        {{n.name}}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <h1>Our Restaurants</h1>
+                <p>This is a list of some Restaurants.</p>
+                <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Restaurants</a>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{url_for('static', filename= 'vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename= 'vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+{% endblock %}

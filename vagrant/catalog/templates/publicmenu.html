@@ -1,0 +1,46 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div>
+                 <h1>{{ restaurant.name }}
+                   <figure class="creator">
+                    <img src="{{ creator.picture}}">
+                    <figcaption>{{ creator.name }}</figcaption>
+                  </figure>
+                 </h1>
+                  </div>
+                     {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                 <ul>
+                 	{% for message in messages %}
+                 	   <li><strong>{{ message }}</strong></li>
+                  {% endfor %}
+                 </ul>
+                    {% endif %}
+                 	  {% endwith %}
+
+                  
+                  {% for i in items %}
+                  
+                     {{i.name}}
+
+
+                   <p> {{i.description}}</p>
+ 
+                  
+                    {{i.price}}
+                 
+                  </br>
+                
+                  </br>
+
+                {% endfor %}
+                
+          </div>
+  </div>
+
+    <script src="{{url_for('static', filename= 'vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename= 'vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+{% endblock %}

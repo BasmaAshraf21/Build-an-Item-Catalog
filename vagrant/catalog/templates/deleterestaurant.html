@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div id="page-content-wrapper">
+            <div class="container-fluid">
+<h1> Are You Sur you want to delete {{i.name}}?</h1>
+<form action="{{ url_for('deleteRestaurant', restaurant_id = i.id)}}" method = 'post'>
+
+	<input type="submit" value="Delete" class="btn btn-secondary" id="menu-toggle">
+</form>
+<a href=" {{url_for ('ShowRestaurants')}}" > Cancel </a>
+</div>
+</div>
+<script src="{{url_for('static', filename= 'vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename= 'vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+{% endblock %}

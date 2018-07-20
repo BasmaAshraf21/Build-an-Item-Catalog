@@ -1,0 +1,46 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div id="page-content-wrapper">
+            <div class="container-fluid">
+                
+              <a href="{{url_for('newRestaurant')}}">New Restaurant</a>
+              {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                 <ul>
+                  {% for message in messages %}
+                     <li><strong>{{ message }}</strong></li>
+                  {% endfor %}
+                 </ul>
+                    {% endif %}
+                    {% endwith %}
+            
+                {% for n in restaurant %}
+                
+                    <a href= "{{url_for ('restaurantMenu', restaurant_id= n.id) }}">
+                                    <div class="row">
+                                    <div class="col-md-1"></div>
+                                      <div class="col-md-10 restaurant-list">
+                                        <h1>{{n.name}}</h1>
+                                      </div>
+                                    <div class="col-md-1"></div>
+                                  </div>
+                    </a>
+                </br>
+                  
+                  <a href="{{ url_for('editRestaurant',restaurant_id = n.id)}}" class="btn btn-secondary" id="menu-toggle">Edit</a>
+
+                 <a href="{{ url_for('deleteRestaurant',restaurant_id = n.id)}}" class="btn btn-secondary" id="menu-toggle">Delete</a>
+                  </br>
+
+                  </br>
+                {% endfor %}
+            
+
+</br>
+</div>
+</div>
+
+<script src="{{url_for('static', filename= 'vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename= 'vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+{% endblock %}
