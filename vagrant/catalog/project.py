@@ -291,8 +291,9 @@ def newMenuItem(restaurant_id):
                "Please create your own restaurant in order to add items.');}"\
                "</script><body onload='myFunction()'>"
     if request.method == 'POST':
-        newItem = MenuItem(name = request.form['name'],description = request.form['description'],price = request.form[
-            'price'], restaurant_id = restaurant_id, user_id=new.user_id)
+        newItem = MenuItem(name = request.form['name'],description = request.form['description'],
+                           priceprice = request.form['price'], restaurant_id = restaurant_id, user_id=new.user_id)
+
         session.add(newItem)
         session.commit()
         session.close()
